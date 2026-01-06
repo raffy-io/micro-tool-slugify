@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="grid place-items-center h-dvh bg-split-gradient"
+      x-data="sluggerApp"
+    >
+      <div class="w-full max-w-md p-8">
+        <form @submit.prevent="slugify" class="flex flex-col gap-4">
+          <h1 class="text-6xl mb-6 font-black">Slugger</h1>
+
+          <div class="flex gap-2">
+            <input
+              type="text"
+              x-model="message"
+              class="bg-slate-200 px-4 py-2 grow outline-teal-600 rounded"
+              placeholder="Enter text..."
+            />
+            <button
+              type="submit"
+              :disabled="!message.trim()"
+              class="bg-teal-600 px-4 py-2 text-white font-bold rounded disabled:opacity-50"
+            >
+              Slugify
+            </button>
+          </div>
+        </form>
+
+        <template x-if="result">
+          <div
+            class="mt-8 p-4 bg-slate-100 border-l-4 border-teal-600 rounded flex items-center justify-between"
+          >
+            <p
+              class="font-mono text-teal-800 break-all pr-4"
+              x-text="result"
+            ></p>
+
+            <button
+              @click="copy"
+              class="shrink-0 px-3 py-1 text-xs font-bold uppercase rounded transition"
+              :class="copied ? 'bg-green-500 text-white' : 'bg-slate-300 text-slate-700'"
+            >
+              <span x-text="copied ? 'Copied!' : 'Copy'"></span>
+            </button>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
